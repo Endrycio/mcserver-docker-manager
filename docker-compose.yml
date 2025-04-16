@@ -1,0 +1,21 @@
+services:
+  minecraft:
+    image: itzg/minecraft-server
+    container_name: YOUR_CONTAINER_NAME
+    ports:
+      - "25565:25565"
+      - "25575:25575/tcp"
+      - "19132:19132/udp"
+    environment:
+      EULA: "TRUE"
+      TYPE: "CUSTOM"
+      CUSTOM_SERVER: "server.jar"        # If you have your own server.jar 
+      MEMORY: "2G"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: "rcon_password"
+      RCON_PORT: "25575"
+      MOTD: Minecraft server
+    volumes:
+      - ./server_data:/data                             # MC-serverdata (world, plugins, etc.)
+    working_dir: /data
+    restart: "no"                # Niet automatisch opnieuw starten
