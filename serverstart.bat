@@ -28,13 +28,15 @@ choice /c YN /t 5 /d Y >nul
 
 if errorlevel 2 (
     echo N
+    echo Starting Minecraft Server...
+    timeout /t 7 >nul    
 ) else (
     echo Saving Server...
     powershell -ExecutionPolicy Bypass -File "pre_backup.ps1"
     echo Done!
+    echo Starting Minecraft Server...
 )
 
-echo Starting Minecraft Server...
 docker ps | findstr /I "%CONTAINER_NAME%" >nul
 if %errorlevel% neq 0 (
     docker compose -f "docker-compose.yml" up -d
@@ -56,6 +58,7 @@ choice /c YN /t 5 /d Y >nul
 
 if errorlevel 2 (
     echo N
+    echo No back-up made!
 ) else (
     echo Saving Server...
     powershell -ExecutionPolicy Bypass -File "post_backup.ps1"
