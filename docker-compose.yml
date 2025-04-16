@@ -18,4 +18,4 @@ services:
     volumes:
       - ./server_data:/data                             # MC-serverdata (world, plugins, etc.)
     working_dir: /data
-    restart: "no"                # Niet automatisch opnieuw starten
+    restart: "no"
